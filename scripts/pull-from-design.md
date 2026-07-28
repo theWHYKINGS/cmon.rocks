@@ -69,16 +69,38 @@ Images live under `assets/` and are committed. Re-pull only if a local render
 shows broken images: bundle-fetch them as `cm_images.json`, then
 `python3 scripts/unpack_images.py`.
 
+## Post-processing applied on every deploy (deploy.sh)
+
+The design source is missing several things a live site needs; three idempotent
+scripts re-apply them after each pull (so a re-pull never loses them):
+
+- `localize_assets.py` — rewrites the Google Fonts `<link>` in index.html to the
+  locally vendored `vendor/fonts-local.css` (fonts in `assets/fonts/`), and the
+  three unpkg React/Babel URLs in support.js to `vendor/*.js`. **No third-party
+  request** remains (GDPR). React/ReactDOM/Babel are byte-identical to unpkg
+  (match the SRI hashes support.js declares).
+- `build_legal.py` — builds `legal/Impressum.html` + `legal/Datenschutz.html`
+  from `src/legal/*.html`, themed to CMON (terracotta + local fonts).
+- `inject_head.py` — adds `<title>`, meta/OG, favicon, `lang="de"`; repoints the
+  footer `#impressum`/`#datenschutz` links to the built pages; **removes the
+  `#agb` link** (see below).
+
+**Legal entity = the WHYKINGS GmbH** (confirmed 2026-07-28), same as the main
+site + Academy — Impressum reuses the GmbH data. The Datenschutz is CMON-specific
+(GitHub Pages hosting, e-mail/phone/WhatsApp contact, local fonts/libs, no forms/
+payment/video). Refreshing fonts (new weights/families in the design): re-run the
+css2 fetch (Safari UA) into `assets/fonts/`, regenerate `vendor/fonts-local.css`.
+
 ## ⚠️ Still open before public launch
 
-- **Legal:** the footer's Impressum / Datenschutzerklärung / AGB links are empty
-  `#anchors` — the template ships no legal text. Real CMON legal content is
-  legally required (Impressumspflicht) before the site is public. This is CMON's
-  own entity, NOT theWHYKINGS GmbH — don't reuse the other sites' legal pages.
-- **Title/SEO:** the standalone page has no `<title>`/meta (support.js sets the
-  tab title only in the design tool). Add a `<title>` + meta/OG tags when ready.
-- **Google Fonts** load from `fonts.googleapis.com` (third-party request). The
-  other sites vendor fonts locally for GDPR — consider the same here.
+- **AGB:** the template's footer linked to `#agb` but there is no AGB text yet, so
+  `inject_head.py` removes that link. If CMON needs Coworking-AGB (rental terms,
+  cancellation, house rules), add `src/legal/AGB.html`, extend `build_legal.py`,
+  and restore the footer link in `inject_head.py`.
+- **Favicon** is the wordmark `assets/cmon-logo.png` (wide, not square) — a proper
+  square icon would look better in the browser tab.
+- **Datenschutz** was adapted from an eRecht24 base + the Academy version; have it
+  reviewed for CMON specifics before heavy public promotion.
 
 ## Gotchas
 
