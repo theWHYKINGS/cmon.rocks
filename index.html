@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style data-omelette-injected>html,body{background:transparent}</style><script data-omelette-injected>(()=>{{const W=new URLSearchParams(location.search).get("theme");if(W==="light"||W==="dark"){document.documentElement.dataset.theme=W}}{if(new URLSearchParams(location.search).get("_omthumb")==="1"){const W=(q)=>{const X=q.focus;if(!X)return;q.focus=function(H){X.call(this,{...H,preventScroll:true})}};W(HTMLElement.prototype);W(SVGElement.prototype);if(typeof MathMLElement!=="undefined"){W(MathMLElement.prototype)}const $=(q)=>{q.removeAttribute("autofocus");q.inert=true;if(!(q instanceof HTMLElement))q.removeAttribute("tabindex")};const z=(q)=>{if(q.hasAttribute("autofocus"))$(q);for(const X of q.querySelectorAll("[autofocus]")){$(X)}};z(document.documentElement);new MutationObserver((q)=>{for(const X of q){for(const H of X.addedNodes){if(H.nodeType===1)z(H)}}}).observe(document,{childList:true,subtree:true})}}{const W=()=>{try{if(document.querySelector('meta[name="color-scheme"]'))return;const $=getComputedStyle(document.documentElement).getPropertyValue("color-scheme").trim();if($&&$!=="normal")return;const z=(j)=>{if(!j)return null;const F=getComputedStyle(j).backgroundColor.match(/^rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)(?:[,\s/]+([\d.]+%?))?\s*\)$/);if(!F)return null;const G=F[4]==null?1:parseFloat(F[4])/(F[4].endsWith("%")?100:1);if(G<0.99)return null;return[+F[1],+F[2],+F[3]]};const q=z(document.body)||z(document.documentElement);if(!q)return;const X=(j)=>{const F=j/255;return F<=0.04045?F/12.92:((F+0.055)/1.055)**2.4};const H=0.2126*X(q[0])+0.7152*X(q[1])+0.0722*X(q[2]);document.documentElement.style.setProperty("color-scheme",H<0.4?"dark":"light")}catch{}};if(document.readyState==="complete")W();else window.addEventListener("load",W)}var b=[];var p=false;var u=30000;var d=3000;document.addEventListener("DOMContentLoaded",()=>{const W=window.Babel;const $="om-src-id";if(W&&W.registerPlugin&&!(W.availablePlugins&&W.availablePlugins[$])){W.registerPlugin($,({types:H})=>({visitor:{JSXOpeningElement(j,F){const G=j.node;if(G.name&&G.name.type==="JSXMemberExpression")return;for(let Q=0;Q<G.attributes.length;Q++){const V=G.attributes[Q];if(V.type==="JSXAttribute"&&V.name&&V.name.name==="data-om-id")return}const P=F.file&&F.file.opts&&F.file.opts.filename||"?";const R=G.loc&&G.loc.start;const J=`jsx:${P}:${G.start??0}:${R?R.line:0}:${R?R.column+1:0}`;G.attributes.push(H.jsxAttribute(H.jsxIdentifier("data-om-id"),H.stringLiteral(J)))}}}))}const z="om-text-extract";let q=false;if(p&&W&&W.registerPlugin&&!(W.availablePlugins&&W.availablePlugins[z])){const H=window.React;if(H&&H.useSyncExternalStore&&H.createElement){q=true;const j={};const F=new Set;let G=0;window.__omTextO=j;window.__omTextSet=(J)=>{for(const Q in J){const V=J[Q];if(V==null)delete j[Q];else j[Q]=V}G++;F.forEach((Q)=>Q())};const P=(J)=>{F.add(J);return()=>F.delete(J)};const R=()=>G;window.__OmT=function J(Q){H.useSyncExternalStore(P,R,R);return H.createElement("span",{"data-om-text":Q.i,className:"__om-t"},Q.i in j?j[Q.i]:Q.children)};W.registerPlugin(z,({types:J})=>{const Q={style:1,script:1,noscript:1,textarea:1,title:1,option:1,text:1,tspan:1,textPath:1};const V={placeholder:1,alt:1,title:1,label:1,"aria-label":1,"aria-description":1,"aria-placeholder":1};const Y=(K,M)=>J.logicalExpression("??",J.memberExpression(J.logicalExpression("||",J.memberExpression(J.identifier("window"),J.identifier("__omTextO")),J.objectExpression([])),J.stringLiteral(K),true),M);const Z=(K)=>K.file&&K.file.opts&&K.file.opts.filename||"?";const B=(K)=>K.file&&K.file.code||"";const U=(K,M)=>{const L=(D)=>D&&D.start!=null&&D.end!=null&&(D.type==="StringLiteral"||D.type==="TemplateLiteral"&&D.expressions.length===0)?[D.start,D.end]:null;const N=L(M);if(N)return N;if(M&&M.type==="Identifier"){const D=K.scope.getBinding(M.name);if(D&&D.constant&&D.path.node.type==="VariableDeclarator"){return L(D.path.node.init)}}return null};const x=(K,M,L)=>{const N=K.node;let D=false;const f=(w,A)=>{D=true;return J.jsxElement(J.jsxOpeningElement(J.jsxIdentifier("__OmT"),[J.jsxAttribute(J.jsxIdentifier("i"),J.stringLiteral(w))],false),J.jsxClosingElement(J.jsxIdentifier("__OmT")),[A],false)};const C=N.children.map((w)=>{if(w.type==="JSXText"){if(w.start==null||w.end==null)return w;const A=L.slice(w.start,w.end);const S=A.length-A.trimStart().length;const O=A.length-A.trimEnd().length;if(S+O>=A.length)return w;return f(`txt:${M}:${w.start+S}:${w.end-O}`,w)}if(w.type==="JSXExpressionContainer"){const A=U(K,w.expression);if(A)return f(`str:${M}:${A[0]}:${A[1]}`,w)}return w});if(D)N.children=C};return{visitor:{JSXOpeningElement(K,M){const L=K.node;const N=Z(M);const D={};for(let f=0;f<L.attributes.length;f++){const C=L.attributes[f];if(C.type!=="JSXAttribute"||!C.name)continue;const w=C.name.name;if(!V[w])continue;if(!C.value||C.value.type!=="StringLiteral")continue;if(C.value.start==null||C.value.end==null)continue;const A=`txt:${N}:${C.value.start}:${C.value.end}`;D[w]=A;C.value=J.jsxExpressionContainer(Y(A,J.stringLiteral(C.value.value)))}if(Object.keys(D).length){L.attributes.push(J.jsxAttribute(J.jsxIdentifier("data-om-text-attrs"),J.stringLiteral(JSON.stringify(D))))}},JSXElement(K,M){const L=K.node.openingElement;const N=L&&L.name&&L.name.name;if(N==="__OmT")return;if(typeof N==="string"&&Q[N])return;x(K,Z(M),B(M))},JSXFragment(K,M){x(K,Z(M),B(M))}}}})}}const X=q?["transform-react-jsx-source",$,z]:["transform-react-jsx-source",$];document.querySelectorAll('script[type="text/babel"],script[type="text/jsx"]').forEach((H,j)=>{const F=H.getAttribute("data-plugins")||"";const G=X.filter((P)=>F.indexOf(P)<0);if(G.length){H.setAttribute("data-plugins",F?`${F},${G.join(",")}`:G.join(","))}if(!H.hasAttribute("data-filename")){H.setAttribute("data-filename",H.getAttribute("src")||`inline-${j}`)}})});var I=window.parent;var g="not editable here — open the project in the Claude Design editor to save";var n=()=>Promise.resolve({persisted:false,noHost:true,reason:g});var k=n;var v="data/storage.json";var l=()=>{try{const W=new URL(document.baseURI);const $=W.pathname.match(/\/projects\/([^/]+)\/serve\//);if($)return $[1];return W.hostname.split(".")[0]||""}catch{return location.hostname.split(".")[0]||""}};var o=()=>{try{const W=new URL(document.baseURI);const $=W.pathname.indexOf("/serve/");if($>=0)return W.origin+W.pathname.slice(0,$+"/serve/".length)+v}catch{}return"./"+v};var E=null;var _=()=>{if(!E){E=fetch(o(),{cache:"no-store"}).then((W)=>{if(W.ok)return W.text();return W.status===404?"":null}).catch(()=>null).then((W)=>{if(W===null){E=null;return null}const $=new Map;if(!W)return $;let z;try{z=JSON.parse(W)}catch{console.warn("[omelette.storage] "+v+" is not valid JSON; treating the store as unreadable so a save cannot overwrite the "+"hand-edited bytes. Fix the JSON (or delete the file) to re-enable persistence.");E=null;return null}if(z===null||typeof z!=="object"||Array.isArray(z)){console.warn("[omelette.storage] "+v+" doesn't hold a JSON object; treating the store as unreadable so a save cannot "+"overwrite the hand-edited bytes. Make the top level a JSON object to re-enable persistence.");E=null;return null}const q=z;if("data"in q){const X=q.data;if(X===null||typeof X!=="object"||Array.isArray(X)){console.warn("[omelette.storage] "+v+' has a "data" field that is not a JSON object; treating the store as unreadable so a '+'save cannot overwrite the hand-edited bytes. Make "data" a JSON object to re-enable persistence.');E=null;return null}const H=q._meta;const j=H!==null&&typeof H==="object"?H.project:undefined;if(typeof j==="string"&&j!==""&&j!==l())return $;for(const F of Object.keys(X))$.set(F,X[F]);return $}for(const X of Object.keys(q)){if(X!=="_meta")$.set(X,q[X])}return $})}return E};var y=(W)=>k(v,JSON.stringify({_meta:{project:l(),version:1},data:Object.fromEntries(W)},null,2));var m=Promise.resolve();var T=(W)=>{const $=m.then(W);m=$.then(()=>{return},()=>{return});return $};var s=/sk-(?:ant-)?[A-Za-z0-9_-]{16,}|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{20,}|xox[a-z]-[A-Za-z0-9][A-Za-z0-9-]{9,}|AIza[0-9A-Za-z_-]{30,}|-----BEGIN [A-Z ]*PRIVATE KEY-----/;var a=/password|passwd|secret|api[_-]?key|access[_-]?token|auth[_-]?token|credential/i;var r=(W,$,z)=>{if(s.test($)||a.test(W)&&typeof z==="string"&&z.length>=8){console.warn('[omelette.storage] the value for "'+W+'" looks like a credential. The storage file is a plaintext project file — visible to '+"everyone with project access and copied when the project is duplicated. Do not store secrets here.")}};var c={persisted:false,reason:"could not load the existing store — not overwriting it"};var i={persisted:false,reason:"stored value changed since a failed read — re-read this key before saving"};var h=new Set;var t={get:(W)=>{if(typeof W!=="string"){return Promise.reject(new TypeError("storage.get: key must be a string"))}return T(_).then(($)=>{if($===null){h.add(W);return null}h.delete(W);if(!$.has(W))return null;const z=$.get(W);return z==null?null:JSON.parse(JSON.stringify(z))})},set:(W,$)=>{if(typeof W!=="string"){return Promise.reject(new TypeError("storage.set: key must be a string"))}let z;try{z=JSON.stringify($)}catch(X){return Promise.reject(new TypeError("storage.set: value must be JSON-serializable ("+String(X)+")"))}if(z===undefined){return Promise.reject(new TypeError("storage.set: value must be JSON-serializable"))}r(W,z,$);const q=JSON.parse(z);return T(()=>_().then((X)=>{if(X===null)return c;if(h.has(W)){if(X.has(W))return i;h.delete(W)}X.set(W,q);return y(X)}))},delete:(W)=>{if(typeof W!=="string"){return Promise.reject(new TypeError("storage.delete: key must be a string"))}return T(()=>_().then(($)=>{if($===null)return c;if(h.has(W)){if($.has(W))return i;h.delete(W)}$.delete(W);return y($)}))},keys:()=>T(_).then((W)=>W===null?[]:Array.from(W.keys()))};window.omelette={writeFile:(W,$)=>k(W,$).then((z)=>{if(!z.persisted&&!z.noHost){throw new Error(z.reason||"write failed")}}),storage:t};if(I&&I!==window){const W=(J,Q)=>{try{I.postMessage({__omelette_log:true,type:J,data:Q},"*")}catch{}};["log","warn","error"].forEach((J)=>{const Q=console[J];console[J]=(...V)=>{const Y=V.map((Z)=>{try{return typeof Z==="object"?JSON.stringify(Z):String(Z)}catch{try{return String(Z)}catch{return"[unstringifiable]"}}}).join(" ");W(J,Y);Q.apply(console,V)}});window.addEventListener("error",(J)=>{const Q=J.target;if(Q&&Q!==window&&Q.tagName){const V=Q.src||Q.href||"";W("resource_error",`${Q.tagName} failed to load: ${V}`)}else{W("error",`${J.message||"Unknown error"} at ${J.filename||"?"}:${J.lineno||0}:${J.colno||0}`)}},true);window.addEventListener("unhandledrejection",(J)=>{const Q=J.reason;const V=Q instanceof Error?`${Q.message} ${Q.stack}`:String(Q);W("error",`Unhandled rejection: ${V}`)});window.addEventListener("click",(J)=>{if(J.defaultPrevented||J.button!==0)return;if(J.metaKey||J.ctrlKey||J.shiftKey||J.altKey)return;const Q=J.composedPath?J.composedPath():[];const V=["button","input","select","textarea","summary","label"];let Y=null;for(const x of Q){if(!(x instanceof Element))continue;if(x.localName==="a"){if(!(x instanceof HTMLAnchorElement))return;Y=x;break}if(V.indexOf(x.localName)!==-1)return}if(!Y)return;if(Y.isContentEditable)return;const Z=Y.closest("[contenteditable]");if(Z&&Z.getAttribute("contenteditable")!=="false")return;const B=(Y.getAttribute("target")||"_self").toLowerCase();if(B!=="_self"&&B!=="_top"&&B!=="_parent")return;let U;try{U=new URL(Y.href)}catch{return}if(U.protocol!=="http:"&&U.protocol!=="https:")return;if(location.origin==="null")return;if(U.origin===location.origin)return;J.preventDefault();window.open(U.href,"_blank","noopener,noreferrer")});const $=()=>{try{I.postMessage({type:"omelette:height",height:document.documentElement.scrollHeight},"*")}catch{}};if(window.ResizeObserver)new ResizeObserver($).observe(document.documentElement);const z=()=>{$();if(!document.querySelector('script[type="text/babel"],script[type="text/jsx"]'))return;const J=()=>document.getElementById("root")||document.querySelector("body > div[id]");const Q=J()?.firstElementChild??null;let V=0;const Y=()=>{const Z=J();if(Z&&Z.firstElementChild!==Q||++V>30){$();return}setTimeout(Y,100)};setTimeout(Y,100)};if(document.readyState==="complete")z();else window.addEventListener("load",z);const q={};let X=0;const H=(J)=>new Promise((Q,V)=>{if(!b.length){V(new Error("claude.complete: no parent origin"));return}const Y=`c${++X}`;const Z=()=>setTimeout(()=>{delete q[Y];V(new Error(`claude.complete: no data for ${u/1000}s`))},u);const B=Z();q[Y]={resolve:Q,reject:V,text:"",t:B,arm:Z};try{for(const U of b){I.postMessage({__om_api:true,id:Y,body:J},U)}}catch(U){clearTimeout(B);delete q[Y];V(U)}});const j=8;const F=async(J,Q)=>{if(!Array.isArray(J.messages)){throw new Error("claude.complete: tools require a messages array")}const V=J.messages.slice();const Y={...J,tools:J.tools.map((U)=>{if(U===null||typeof U!=="object")return U;const x={};for(const K of Object.keys(U)){if(typeof U[K]!=="function")x[K]=U[K]}return x})};const Z=Y.tool_choice;const B=Z!=null&&(Z.type==="any"||Z.type==="tool")?{...Y,tool_choice:Z.disable_parallel_tool_use!==undefined?{type:"auto",disable_parallel_tool_use:Z.disable_parallel_tool_use}:{type:"auto"}}:Y;for(let U=0;U<j;U++){const x=await H({...U===0?Y:B,messages:V});const K=x.message;const M=K&&Array.isArray(K.content)?K.content:null;const L=M?M.filter((D)=>D?.type==="tool_use"):[];if(K?.stop_reason!=="tool_use"||L.length===0){return x.text}const N=[];for(const D of L){const f=Q.get(D.name);if(!f){N.push({type:"tool_result",tool_use_id:D.id,content:`no handler for tool "${D.name}"`,is_error:true});continue}try{const C=await f(D.input);const w=typeof C==="string"?C:R(C)??"";N.push({type:"tool_result",tool_use_id:D.id,content:w})}catch(C){N.push({type:"tool_result",tool_use_id:D.id,content:String(C?.message??C??"tool handler failed"),is_error:true})}}V.push({role:"assistant",content:M},{role:"user",content:N})}throw new Error(`claude.complete: exceeded ${j} tool turns`)};window.claude={complete(J){const Q=J;if(Q!==null&&typeof Q==="object"&&Array.isArray(Q.tools)&&Q.tools.some((V)=>V!==null&&typeof V==="object"&&typeof V.run==="function")){const V=new Map;for(const Y of Q.tools){if(Y!==null&&typeof Y==="object"&&typeof Y.run==="function"){V.set(String(Y.name),Y.run)}}return F(Q,V)}return H(J).then((V)=>V.text)}};const G={};let P=0;k=(J,Q)=>new Promise((V)=>{if(!b.length){V({persisted:false,noHost:true,reason:g});return}const Y=`f${++P}`;const Z=setTimeout(()=>{delete G[Y];V({persisted:false,noHost:true,reason:g})},d);G[Y]={settle:V,t:Z};try{for(const B of b){I.postMessage({__om_file:true,id:Y,op:"write",path:J,content:Q},B)}}catch{clearTimeout(Z);delete G[Y];V({persisted:false,noHost:true,reason:g})}});const R=(J)=>{try{return JSON.stringify(J)}catch{return JSON.stringify(String(J))}};window.addEventListener("message",(J)=>{if(b.indexOf(J.origin)<0)return;if(J.source!==I)return;const Q=J.data;if(!Q)return;if(Q.type==="omelette-preview-refresh"){if(typeof Q.token!=="string"||!/^[0-9a-f.-]+(\.(rc|pr-[0-9]+))?(\.[0-9]+\.[0-9a-f]{16})?$/.test(Q.token))return;const Z=Math.max(1,Math.floor((Q.expiresAt||0)-Date.now()/1000));document.cookie="__Host-omelette-preview="+Q.token+"; Path=/; Secure; SameSite=None; Partitioned; Max-Age="+Z;return}if(Q.__om_file_r){const Z=G[Q.id];if(!Z)return;clearTimeout(Z.t);delete G[Q.id];Z.settle(Q.ok?{persisted:true}:{persisted:false,reason:Q.error||"write failed"});return}if(Q.__om_api_r){const Z=q[Q.id];if(!Z)return;if(Q.error!=null){clearTimeout(Z.t);delete q[Q.id];Z.reject(new Error(Q.error));return}if(Q.chunk!=null){clearTimeout(Z.t);Z.t=Z.arm();Z.text+=Q.chunk;return}if(Q.done){clearTimeout(Z.t);delete q[Q.id];Z.resolve({text:Q.text!=null?Q.text:Z.text,message:Q.message});return}return}if(!Q.__om_eval)return;const V=Q;const Y=(Z)=>{J.source.postMessage({...Z,__om_eval_r:1,id:V.id},J.origin)};try{const Z=(0,eval)(V.code);if(Z&&typeof Z.then==="function"){Z.then((B)=>Y({ok:1,v:R(B)}),(B)=>Y({ok:0,e:String(B)}))}else{Y({ok:1,v:R(Z)})}}catch(Z){Y({ok:0,e:String(Z)})}})}})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FBF8F2}*{box-sizing:border-box}a{color:inherit;text-decoration:none;cursor:pointer}a:hover{opacity:.85}html{scroll-behavior:smooth}
+@media (max-width:840px){
+.m-px{padding-left:20px !important;padding-right:20px !important}
+.m-nav{padding:14px 20px !important}
+.m-hide{display:none !important}
+.m-hero{grid-template-columns:1fr !important;gap:36px !important;padding-top:44px !important;padding-bottom:44px !important}
+.m-hero h1{font-size:38px !important}
+.m-heroimg{max-height:440px !important}
+.m-ctas{flex-wrap:wrap !important}
+.m-ctas>a{flex:1 1 100% !important;text-align:center}
+.m-gal{grid-template-columns:1fr 1fr !important;gap:12px !important}
+.m-1col{grid-template-columns:1fr !important}
+.m-shead{flex-direction:column !important;align-items:flex-start !important;gap:8px !important}
+.m-h2{font-size:30px !important}
+.m-kon{padding-top:56px !important;padding-bottom:56px !important;gap:40px !important}
+.m-kon-left{padding-top:0 !important}
+.m-team{flex-direction:column !important}
+.m-card-a{margin-bottom:0 !important}
+.m-card-b{margin-top:0 !important}
+.m-foot{grid-template-columns:1fr !important;gap:36px !important;padding:44px 20px !important}
+.m-ovl{padding:12px !important}
+.m-modal{padding:26px 20px 24px !important;border-radius:14px !important}
+.m-mgrid{grid-template-columns:1fr !important}
+.m-wrap{flex-wrap:wrap !important}
+}</style></helmet>
+<div data-screen-label="CMON Website (Vorschlag 1a)" style="max-width:1440px;margin:0 auto;background:#FBF8F2;color:#241E17;font-family:'Hanken Grotesk',sans-serif">
+  <div class="m-nav" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 48px;border-bottom:1px solid #E9E0D2">
+    <div style="display:flex;align-items:center;gap:12px">
+      <sc-if value="{{ logoIsBild }}" hint-placeholder-val="{{ true }}"><img src="assets/cmon-logo.png" alt="CMON" style="height:26px;width:auto;display:block;mix-blend-mode:multiply"></sc-if>
+      <sc-if value="{{ logoIsText }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Newsreader',serif;font-weight:600;font-size:25px;letter-spacing:-.01em">CMON!</span></sc-if>
+      <span class="m-hide" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7A7063;font-weight:600">Coworking · Maxvorstadt</span>
+    </div>
+    <div style="display:flex;gap:26px;align-items:center;font-size:14.5px;font-weight:500;color:#4E463B">
+      <a class="m-hide" href="#flaeche">Die Fläche</a><a class="m-hide" href="#benefits">Benefits</a><a class="m-hide" href="#preise">Preise</a><a class="m-hide" href="#kontakt">Kontakt</a>
+      <a href="{{ ctaBuchen }}" style="background:#A65231;color:#fff;padding:10px 20px;border-radius:99px;font-weight:600;font-size:14px">Besichtigung anfragen</a>
+    </div>
+  </div>
+  <div id="flaeche" class="m-hero m-px" style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:52px;padding:64px 48px 56px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#A65231;font-weight:700">Schleißheimer Str. 42 · 80333 München</span>
+      <h1 style="margin:0;font-family:'Newsreader',serif;font-weight:500;font-size:54px;line-height:1.06;letter-spacing:-.015em">Familiäres Coworking im Herzen der <em style="color:#A65231">Maxvorstadt</em>.</h1>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#7A7063;max-width:44ch">75 m² für Fokus, Ideen und Begegnung – unter der Woche feste Bürogemeinschaft, am Wochenende exklusiv für dein Team.</p>
+      <div class="m-ctas" style="display:flex;gap:12px;padding-top:4px">
+        <a href="{{ ctaBuchen }}" style="background:#A65231;color:#fff;padding:14px 26px;border-radius:99px;font-weight:600;font-size:15px">Besichtigung anfragen</a>
+        <a href="#fixed-desk-formular" onClick="{{ openFixed }}" style="border:1.5px solid #D8CCBB;color:#241E17;padding:14px 26px;border-radius:99px;font-weight:600;font-size:15px">Fixed Desk anfragen</a>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:#7A7063;font-weight:500;flex-wrap:wrap">
+        <span>24/7 Zugang</span><span style="color:#D8CCBB">•</span><span>250 Mbit/s</span><span style="color:#D8CCBB">•</span><span>Siebträger-Kaffee</span><span style="color:#D8CCBB">•</span><span>Meetingraum &amp; Fokusbox</span>
+      </div>
+    </div>
+    <img src="assets/hero-lounge.jpg" alt="Loungeecke am Fenster mit Blick in die Schleißheimer Straße" class="m-heroimg" style="width:100%;aspect-ratio:2/3;max-height:660px;object-fit:cover;border-radius:14px">
+  </div>
+  <div class="m-px" style="display:flex;align-items:center;gap:18px;padding:0 48px 56px">
+    <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#E0D3C1 22%,#E0D3C1 78%,transparent)"></span>
+    <span style="width:8px;height:8px;background:#A65231;transform:rotate(45deg);flex:none"></span>
+    <span style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#E0D3C1 22%,#E0D3C1 78%,transparent)"></span>
+  </div>
+  <div class="m-gal m-px" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:0 48px 64px">
+    <img src="assets/g-playbooks.jpg" alt="Regal mit Playbooks, Bogenlampe und Yucca" style="width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;display:block">
+    <img src="assets/g-fokusbox.jpg" alt="Separate Fokusbox mit Monitor" style="width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;display:block">
+    <img src="assets/g-regal.jpg" alt="Bücher, Platten und Plattenspieler im Regal" style="width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;display:block">
+    <img src="assets/g-arbeitsplaetze.jpg" alt="Feste Arbeitsplätze mit Monitoren" style="width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;display:block">
+    <img src="assets/g-siebtraeger.jpg" alt="Siebträgermaschine in der voll ausgestatteten Küche" style="width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;display:block">
+    <img src="assets/g-neon.jpg" alt="CMON!-Neon über dem großen Tisch" style="width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:12px;display:block">
+  </div>
+  <div id="benefits" class="m-px" style="background:#fff;border-top:1px solid #E9E0D2;border-bottom:1px solid #E9E0D2;padding:64px 48px;display:flex;flex-direction:column;gap:40px">
+    <div class="m-shead" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px">
+      <h2 class="m-h2" style="margin:0;font-family:'Newsreader',serif;font-weight:500;font-size:36px;letter-spacing:-.01em">Warum das CMON!</h2>
+      <span style="font-size:14px;color:#7A7063">Sechs Gründe, ein Gefühl: ankommen.</span>
+    </div>
+    <div class="m-1col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:36px 40px">
+      <div style="display:flex;flex-direction:column;gap:7px;border-top:1px solid #E9E0D2;padding-top:16px"><span style="font-family:'Newsreader',serif;font-style:italic;font-size:17px;color:#A65231">01</span><span style="font-weight:700;font-size:16px">Zentrale Lage</span><p style="margin:0;font-size:14px;line-height:1.55;color:#7A7063">Mitten in der Maxvorstadt – bestens angebunden, mittendrin statt Gewerbegebiet.</p></div>
+      <div style="display:flex;flex-direction:column;gap:7px;border-top:1px solid #E9E0D2;padding-top:16px"><span style="font-family:'Newsreader',serif;font-style:italic;font-size:17px;color:#A65231">02</span><span style="font-weight:700;font-size:16px">Licht &amp; Design</span><p style="margin:0;font-size:14px;line-height:1.55;color:#7A7063">Lichtdurchflutete Fläche mit modernem Design und hochwertigem Inventar.</p></div>
+      <div style="display:flex;flex-direction:column;gap:7px;border-top:1px solid #E9E0D2;padding-top:16px"><span style="font-family:'Newsreader',serif;font-style:italic;font-size:17px;color:#A65231">03</span><span style="font-weight:700;font-size:16px">Ergonomie ab Werk</span><p style="margin:0;font-size:14px;line-height:1.55;color:#7A7063">Elektrisch höhenverstellbare Tische und ergonomische Bürostühle an jedem Platz.</p></div>
+      <div style="display:flex;flex-direction:column;gap:7px;border-top:1px solid #E9E0D2;padding-top:16px"><span style="font-family:'Newsreader',serif;font-style:italic;font-size:17px;color:#A65231">04</span><span style="font-weight:700;font-size:16px">Rückzug &amp; Fokus</span><p style="margin:0;font-size:14px;line-height:1.55;color:#7A7063">Separater Meetingraum mit Buchungssystem plus eigene Fokusbox.</p></div>
+      <div style="display:flex;flex-direction:column;gap:7px;border-top:1px solid #E9E0D2;padding-top:16px"><span style="font-family:'Newsreader',serif;font-style:italic;font-size:17px;color:#A65231">05</span><span style="font-weight:700;font-size:16px">Kaffee, der zählt</span><p style="margin:0;font-size:14px;line-height:1.55;color:#7A7063">Hochwertiger Kaffee aus dem Siebträger – für Dauermieter als Flat inklusive.</p></div>
+      <div style="display:flex;flex-direction:column;gap:7px;border-top:1px solid #E9E0D2;padding-top:16px"><span style="font-family:'Newsreader',serif;font-style:italic;font-size:17px;color:#A65231">06</span><span style="font-weight:700;font-size:16px">Familiäre Gemeinschaft</span><p style="margin:0;font-size:14px;line-height:1.55;color:#7A7063">Feste, freundliche Kolleg:innen statt anonymer Fläche – man kennt sich.</p></div>
+    </div>
+  </div>
+  <div id="preise" class="m-px" style="padding:64px 48px;display:flex;flex-direction:column;gap:32px">
+    <div class="m-shead" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap">
+      <h2 class="m-h2" style="margin:0;font-family:'Newsreader',serif;font-weight:500;font-size:36px;letter-spacing:-.01em">Leistungsangebot</h2>
+      <span style="font-size:14px;color:#7A7063">Alle Preise netto zzgl. USt. – konkretes Angebot nach kurzer Anfrage.</span>
+    </div>
+    <div class="m-1col" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start">
+      <div style="background:#fff;border:2px solid #A65231;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;position:relative">
+        <span style="position:absolute;top:-12px;left:24px;background:#A65231;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:99px">Kernangebot</span>
+        <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A7063;font-weight:700;padding-top:4px">Fixed Desk</span>
+        <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap"><span style="font-family:'Newsreader',serif;font-size:42px;font-weight:500;white-space:nowrap">320 €</span><span style="font-size:14px;color:#7A7063">/ Monat</span></div>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#7A7063">Dein fester Platz in der Bürogemeinschaft – rund um die Uhr.</p>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#A65231;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">24/7 Zugang mit eigenem Schlüssel</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#A65231;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Höhenverstellbarer Tisch &amp; ergonomischer Stuhl</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#A65231;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Meetingraum &amp; Fokusbox inklusive</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#A65231;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Kaffee- &amp; Tee-Flat</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#A65231;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">High-Speed Internet (250 Mbit/s)</span></div>
+        </div>
+        <a href="#fixed-desk-formular" onClick="{{ openFixed }}" style="background:#A65231;color:#fff;text-align:center;padding:13px;border-radius:99px;font-weight:600;font-size:14.5px;margin-top:4px">Fixed Desk anfragen</a>
+      </div>
+      <div style="background:#fff;border:1px solid #E9E0D2;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A7063;font-weight:700;padding-top:4px">Wochenende · 1 Tag</span>
+        <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap"><span style="font-family:'Newsreader',serif;font-size:38px;font-weight:500;white-space:nowrap">ab 250 €</span><span style="font-size:14px;color:#7A7063">/ Tag</span></div>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#7A7063">Die ganze Fläche exklusiv – Samstag oder Sonntag, 08–22 Uhr.</p>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Samstag <b>oder</b> Sonntag, 08–22 Uhr</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">75 m² exklusiv für dein Team</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">High-Speed Internet (250 Mbit/s)</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">65-Zoll-TV, Musik- &amp; Entertainmenttechnik</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Voll ausgestattete Küche, Reinigung inklusive</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Kaffee, Tee &amp; Softdrinks gegen Aufpreis</span></div>
+        </div>
+        <a href="{{ ctaWochenende }}" style="border:1.5px solid #D8CCBB;color:#241E17;text-align:center;padding:13px;border-radius:99px;font-weight:600;font-size:14.5px;margin-top:4px">Verfügbarkeit anfragen</a>
+      </div>
+      <div style="background:#fff;border:1px solid #E9E0D2;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px">
+        <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A7063;font-weight:700;padding-top:4px">Wochenende · 2 Tage</span>
+        <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap"><span style="font-family:'Newsreader',serif;font-size:38px;font-weight:500;white-space:nowrap">ab 500 €</span><span style="font-size:14px;color:#7A7063">/ Wochenende</span></div>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#7A7063">Das komplette Wochenende für Workshops, Offsites &amp; Events.</p>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Samstag <b>und</b> Sonntag, je 08–22 Uhr</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">75 m² exklusiv für dein Team</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">High-Speed Internet (250 Mbit/s)</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">65-Zoll-TV, Musik- &amp; Entertainmenttechnik</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Voll ausgestattete Küche, Reinigung inklusive</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Kaffee, Tee &amp; Softdrinks gegen Aufpreis</span></div>
+        </div>
+        <a href="{{ ctaWochenende }}" style="border:1.5px solid #D8CCBB;color:#241E17;text-align:center;padding:13px;border-radius:99px;font-weight:600;font-size:14.5px;margin-top:4px">Verfügbarkeit anfragen</a>
+      </div>
+    </div>
+  </div>
+  <div id="kontakt" class="m-kon m-px" style="background:#fff;border-top:1px solid #E9E0D2;padding:80px 48px;display:flex;flex-wrap:wrap;gap:56px 64px;align-items:flex-start">
+    <div class="m-kon-left" style="flex:1 1 340px;max-width:440px;display:flex;flex-direction:column;gap:20px;padding-top:44px">
+      <span style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#A65231;font-weight:700">Persönlich für dich da</span>
+      <h2 class="m-h2" style="margin:0;font-family:'Newsreader',serif;font-weight:500;font-size:46px;line-height:1.08;letter-spacing:-.015em">Lern uns kennen.</h2>
+      <p style="margin:0;font-size:16px;line-height:1.65;color:#5C544A;max-width:420px">Wir zeigen dir die Fläche gerne persönlich – schreib uns oder buch direkt einen Besichtigungstermin.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:6px;max-width:420px">
+        <a href="{{ waLink }}" style="background:#241E17;color:#fff;text-align:center;padding:15px 26px;border-radius:99px;font-weight:600;font-size:15px" style-hover="background:#3C3327">WhatsApp schreiben</a>
+        <a href="{{ ctaBuchen }}" style="border:1.5px solid #D8CCBB;color:#241E17;text-align:center;padding:15px 26px;border-radius:99px;font-weight:600;font-size:15px" style-hover="background:#F7F0E4;border-color:#C9B79E">Besichtigung anfragen</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid #E9E0D2;padding-top:18px;margin-top:8px;max-width:420px">
+        <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#A79C8C;font-weight:700">WhatsApp &amp; Telefon</span>
+        <a href="tel:+491634781138" style="font-size:17px;font-weight:600;color:#241E17" style-hover="color:#A65231">+49 163 4781138</a>
+      </div>
+    </div>
+    <div class="m-team" style="flex:1.5 1 480px;display:flex;gap:24px;align-items:flex-start">
+      <div style="background:#FBF8F2;border:1px solid #E9E0D2;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;flex:1 1 240px;margin-bottom:44px" class="m-card-a">
+        <img src="assets/portrait-dominik.jpg" alt="Dominik Haselbauer" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 15%;display:block">
+        <div style="padding:20px 22px 24px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:3px">
+            <span style="font-family:'Newsreader',serif;font-weight:500;font-size:23px;letter-spacing:-.01em">Dominik Haselbauer</span>
+            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7A7063;font-weight:700">Host</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;border-top:1px solid #E9E0D2;padding-top:12px">
+            <a href="mailto:dominik@thewhykings.com" style="font-size:14.5px;color:#A65231;font-weight:600" style-hover="color:#7E3A20">dominik@thewhykings.com</a>
+            <a href="tel:+491634781138" style="font-size:14.5px;color:#A65231;font-weight:600" style-hover="color:#7E3A20">+49 163 4781138</a>
+          </div>
+        </div>
+      </div>
+      <div style="background:#FBF8F2;border:1px solid #E9E0D2;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;flex:1 1 240px;margin-top:44px" class="m-card-b">
+        <img src="assets/portrait-stefi.jpg" alt="Stefi Haselbauer" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 15%;display:block">
+        <div style="padding:20px 22px 24px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:3px">
+            <span style="font-family:'Newsreader',serif;font-weight:500;font-size:23px;letter-spacing:-.01em">Stefi Haselbauer</span>
+            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7A7063;font-weight:700">Event Managerin</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;border-top:1px solid #E9E0D2;padding-top:12px">
+            <a href="mailto:info@thewhykings.com" style="font-size:14.5px;color:#A65231;font-weight:600" style-hover="color:#7E3A20">info@thewhykings.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ false }}">
+  <div id="fixed-desk-formular" class="m-ovl" style="position:fixed;inset:0;z-index:60;background:rgba(36,30,23,.55);display:flex;align-items:center;justify-content:center;padding:32px">
+    <div class="m-modal" style="background:#FBF8F2;border-radius:18px;width:100%;max-width:620px;max-height:88vh;overflow:auto;padding:36px 40px 32px;display:flex;flex-direction:column;gap:22px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#A65231;font-weight:700">Fixed Desk · 320 € netto / Monat</span>
+          <h2 style="margin:0;font-family:'Newsreader',serif;font-weight:500;font-size:32px;letter-spacing:-.01em">Erzähl uns kurz von dir.</h2>
+        </div>
+        <a href="#kontakt" onClick="{{ closeForm }}" style="font-size:22px;line-height:1;color:#7A7063;padding:4px 8px">×</a>
+      </div>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div class="m-mgrid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:13px;font-weight:700">Name</span>
+            <input type="text" value="{{ fName }}" onChange="{{ onName }}" placeholder="Vor- und Nachname" style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;padding:12px 14px;border:1.5px solid #D8CCBB;border-radius:10px;background:#fff;color:#241E17">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:13px;font-weight:700">E-Mail</span>
+            <input type="email" value="{{ fEmail }}" onChange="{{ onEmail }}" placeholder="name@beispiel.de" style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;padding:12px 14px;border:1.5px solid #D8CCBB;border-radius:10px;background:#fff;color:#241E17">
+          </label>
+        </div>
+        <div class="m-mgrid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:13px;font-weight:700">Ab wann suchst du?</span>
+            <input type="month" value="{{ fAb }}" onChange="{{ onAb }}" style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;padding:12px 14px;border:1.5px solid #D8CCBB;border-radius:10px;background:#fff;color:#241E17">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:13px;font-weight:700">Was machst du beruflich?</span>
+            <input type="text" value="{{ fBeruf }}" onChange="{{ onBeruf }}" placeholder="z. B. UX-Designerin, Steuerberater" style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;padding:12px 14px;border:1.5px solid #D8CCBB;border-radius:10px;background:#fff;color:#241E17">
+          </label>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:13px;font-weight:700">Wie oft wärst du da?</span>
+          <div class="m-wrap" style="display:flex;gap:10px;align-items:center">
+            <sc-for list="{{ freqOptions }}" as="opt" hint-placeholder-count="5">
+              <a href="#fixed-desk-formular" onClick="{{ opt.pick }}" style="width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1.5px solid {{ opt.bd }};background:{{ opt.bg }};color:{{ opt.fg }};font-weight:700;font-size:15px">{{ opt.n }}</a>
+            </sc-for>
+            <span style="font-size:13.5px;color:#7A7063;padding-left:6px">{{ freqLabel }}</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:13px;font-weight:700">Bist du viel in Terminen?</span>
+          <div class="m-wrap" style="display:flex;gap:10px;align-items:center">
+            <sc-for list="{{ callOptions }}" as="opt" hint-placeholder-count="5">
+              <a href="#fixed-desk-formular" onClick="{{ opt.pick }}" style="width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1.5px solid {{ opt.bd }};background:{{ opt.bg }};color:{{ opt.fg }};font-weight:700;font-size:15px">{{ opt.n }}</a>
+            </sc-for>
+            <span style="font-size:13.5px;color:#7A7063;padding-left:6px">{{ callLabel }}</span>
+          </div>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-size:13px;font-weight:700">Ein paar Sätze zu dir</span>
+          <textarea rows="4" value="{{ fText }}" onChange="{{ onText }}" placeholder="Woran arbeitest du gerade? Was suchst du in einer Bürogemeinschaft?" style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.55;padding:12px 14px;border:1.5px solid #D8CCBB;border-radius:10px;background:#fff;color:#241E17;resize:vertical"></textarea>
+        </label>
+        <sc-if value="{{ hasHint }}" hint-placeholder-val="{{ false }}">
+          <span style="font-size:13px;color:#B3441F;font-weight:600">{{ hint }}</span>
+        </sc-if>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;border-top:1px solid #E9E0D2;padding-top:20px">
+          <a href="#fixed-desk-formular" onClick="{{ onSubmit }}" style="background:#A65231;color:#fff;padding:14px 26px;border-radius:99px;font-weight:600;font-size:15px">Anfrage senden</a>
+          <a href="#kontakt" onClick="{{ closeForm }}" style="color:#7A7063;font-size:14px;font-weight:500">Abbrechen</a>
+        </div>
+      </div>
+      </sc-if>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid #E9E0D2;padding-top:22px">
+        <span style="font-family:'Newsreader',serif;font-size:24px;font-weight:500">Danke – deine Anfrage ist unterwegs.</span>
+        <p style="margin:0;font-size:15px;line-height:1.65;color:#7A7063">Falls sich kein Fenster geöffnet hat, schreib uns direkt an <a href="mailto:dominik@thewhykings.com" style="color:#A65231;font-weight:600">dominik@thewhykings.com</a>. Wir melden uns innerhalb von zwei Werktagen.</p>
+        <a href="#kontakt" onClick="{{ closeForm }}" style="align-self:flex-start;border:1.5px solid #D8CCBB;color:#241E17;padding:12px 24px;border-radius:99px;font-weight:600;font-size:14.5px">Schließen</a>
+      </div>
+      </sc-if>
+    </div>
+  </div>
+  </sc-if>
+  <div class="m-foot" style="background:#241E17;color:#EFE7DA;padding:56px 48px 48px;display:grid;grid-template-columns:1.15fr 1fr 1fr 1.1fr;gap:48px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:'Newsreader',serif;font-size:30px;font-weight:600;letter-spacing:-.01em;line-height:1">CMON!</span>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:#B9AE9E;line-height:1.5">
+        <span>Seit 2026 im Herzen der Maxvorstadt</span>
+        <span>Schleißheimer Str. 42</span>
+        <span>80333 München</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font-weight:700;font-size:15px;color:#EFE7DA;border-bottom:1px solid rgba(239,231,218,.22);padding-bottom:12px">Öffnungszeiten</span>
+        <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:700;font-size:14px;color:#EFE7DA">Montag bis Freitag</span><span style="font-size:13.5px;color:#B9AE9E;line-height:1.5">ausschließlich für Dauermieter</span></div>
+        <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:700;font-size:14px;color:#EFE7DA">Samstag</span><span style="font-size:13.5px;color:#B9AE9E;line-height:1.5">08 – 22 Uhr buchbar</span></div>
+        <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:700;font-size:14px;color:#EFE7DA">Sonntag</span><span style="font-size:13.5px;color:#B9AE9E;line-height:1.5">08 – 22 Uhr buchbar</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font-weight:700;font-size:15px;color:#EFE7DA;border-bottom:1px solid rgba(239,231,218,.22);padding-bottom:12px">Rechtsdokumente</span>
+        <a href="#impressum" style="align-self:flex-start;font-size:14px;color:#EFE7DA;border-bottom:1.5px solid #A65231;padding-bottom:3px">Impressum</a>
+        <a href="#datenschutz" style="align-self:flex-start;font-size:14px;color:#EFE7DA;border-bottom:1.5px solid #A65231;padding-bottom:3px">Datenschutzerklärung</a>
+        <a href="#agb" style="align-self:flex-start;font-size:14px;color:#EFE7DA;border-bottom:1.5px solid #A65231;padding-bottom:3px">AGB</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font-weight:700;font-size:15px;color:#EFE7DA;border-bottom:1px solid rgba(239,231,218,.22);padding-bottom:12px">Kontakt</span>
+      <a href="mailto:info@thewhykings.com" style="background:#A65231;color:#fff;text-align:center;padding:14px 18px;border-radius:8px;font-weight:600;font-size:14px">info@thewhykings.com</a>
+      <a href="tel:+491634781138" style="border:1px solid rgba(239,231,218,.25);color:#EFE7DA;text-align:center;padding:14px 18px;border-radius:8px;font-weight:600;font-size:14px">+49 163 4781138</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"logo":{"editor":"enum","options":["text","bild"],"default":"text","tsType":"string","section":"Branding"},"buchung":{"editor":"enum","options":["email","whatsapp"],"default":"email","tsType":"string","section":"Kontakt"}}'>
+class Component extends DCLogic {
+  state = { formOpen: false, sent: false, hint: '', f: { name: '', email: '', ab: '', beruf: '', freq: 3, calls: 3, text: '' } };
+
+  set(key, val) { this.setState(s => ({ f: Object.assign({}, s.f, { [key]: val }), hint: '' })); }
+
+  submit() {
+    const f = this.state.f;
+    if (!f.name.trim() || !f.ab.trim()) { this.setState({ hint: 'Bitte Name und gewünschten Start angeben.' }); return; }
+    const freqText = ['1 – ein Tag pro Woche', '2 – zwei Tage pro Woche', '3 – drei Tage pro Woche', '4 – vier Tage pro Woche', '5 – jeden Tag'][f.freq - 1];
+    const lines = [
+      'Fixed-Desk-Anfrage über cmon.rocks',
+      '',
+      'Name: ' + f.name,
+      f.email.trim() ? 'E-Mail: ' + f.email : null,
+      'Start: ' + f.ab,
+      f.beruf.trim() ? 'Beruf: ' + f.beruf : null,
+      'Anwesenheit: ' + freqText,
+      'Termine/Calls: ' + f.calls + ' von 5 (' + ['sehr selten', 'selten', 'gemischt', 'oft', 'fast durchgehend'][f.calls - 1] + ')',
+      f.text.trim() ? '' : null,
+      f.text.trim() ? 'Über mich: ' + f.text : null
+    ].filter(l => l !== null);
+    const body = lines.join('\n');
+    const perMail = (this.props.buchung ?? 'email') === 'email';
+    const url = perMail
+      ? 'mailto:dominik@thewhykings.com?subject=' + encodeURIComponent('Fixed Desk Anfrage – CMON!') + '&body=' + encodeURIComponent(body)
+      : 'https://wa.me/491634781138?text=' + encodeURIComponent(body);
+    window.open(url, '_blank');
+    this.setState({ sent: true });
+  }
+
+  renderVals() {
+    const wa = 'https://wa.me/491634781138';
+    const perWhatsApp = (this.props.buchung ?? 'email') === 'whatsapp';
+    const mail = (s) => 'mailto:dominik@thewhykings.com?subject=' + encodeURIComponent(s);
+    const waMsg = (s) => wa + '?text=' + encodeURIComponent(s);
+    const logoBild = (this.props.logo ?? 'text') === 'bild';
+    const f = this.state.f;
+    const freqOptions = [1, 2, 3, 4, 5].map(n => ({
+      n: String(n),
+      bg: f.freq === n ? '#A65231' : '#fff',
+      fg: f.freq === n ? '#fff' : '#241E17',
+      bd: f.freq === n ? '#A65231' : '#D8CCBB',
+      pick: () => this.set('freq', n)
+    }));
+    const freqLabels = ['ein Tag pro Woche', 'zwei Tage pro Woche', 'drei Tage pro Woche', 'vier Tage pro Woche', 'jeden Tag'];
+    const callOptions = [1, 2, 3, 4, 5].map(n => ({
+      n: String(n),
+      bg: f.calls === n ? '#A65231' : '#fff',
+      fg: f.calls === n ? '#fff' : '#241E17',
+      bd: f.calls === n ? '#A65231' : '#D8CCBB',
+      pick: () => this.set('calls', n)
+    }));
+    const callLabels = ['sehr selten', 'selten', 'gemischt', 'oft', 'fast durchgehend'];
+    return {
+      logoIsBild: logoBild,
+      logoIsText: !logoBild,
+      formOpen: this.state.formOpen,
+      formClosed: !this.state.formOpen,
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      hint: this.state.hint,
+      hasHint: !!this.state.hint,
+      fName: f.name, fEmail: f.email, fAb: f.ab, fBeruf: f.beruf, fText: f.text,
+      freqOptions,
+      freqLabel: freqLabels[f.freq - 1],
+      callOptions,
+      callLabel: callLabels[f.calls - 1],
+      openFixed: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ formOpen: true, sent: false, hint: '' }); },
+      closeForm: () => this.setState({ formOpen: false }),
+      onName: (e) => this.set('name', e.target.value),
+      onEmail: (e) => this.set('email', e.target.value),
+      onAb: (e) => this.set('ab', e.target.value),
+      onBeruf: (e) => this.set('beruf', e.target.value),
+      onText: (e) => this.set('text', e.target.value),
+      onSubmit: () => this.submit(),
+      waLink: waMsg('Hallo! Ich habe eine Frage zum CMON!.'),
+      ctaBuchen: waMsg('Hallo! Ich würde gern einen Besichtigungstermin im CMON! vereinbaren.'),
+      ctaFixed: perWhatsApp ? waMsg('Hallo! Ich interessiere mich für einen Fixed Desk im CMON!.') : mail('Fixed Desk Anfrage – CMON!'),
+      ctaWochenende: perWhatsApp ? waMsg('Hallo! Ich möchte das CMON! am Wochenende mieten – ist noch etwas frei?') : mail('Wochenend-Miete CMON! – Verfügbarkeit')
+    };
+  }
+}
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#FBF8F2">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#FBF8F2"/>
+    <text x="600" y="430" text-anchor="middle" font-family="Georgia,serif" font-size="180" fill="#241E17">CMON!</text>
+    <rect x="480" y="500" width="240" height="8" rx="4" fill="#A65231"/>
+  </svg>
+</template>
+</body>
+</html>
