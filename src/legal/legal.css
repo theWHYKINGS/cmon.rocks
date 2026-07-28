@@ -1,0 +1,139 @@
+/* Shared styling for theWHYKINGS legal pages (Impressum, Datenschutz) */
+
+:root { color-scheme: light; }
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--neutral-50, #f6f6f5);
+  color: var(--neutral-800, #181818);
+  font-family: var(--font-body, "Albert Sans", system-ui, sans-serif);
+  font-size: 16.5px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Top bar ---- */
+.legal-bar {
+  background: var(--neutral-800, #181818);
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.legal-bar img { height: 40px; width: auto; display: block; }
+.legal-bar a.back {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s cubic-bezier(.4,0,.2,1);
+}
+.legal-bar a.back:hover { color: var(--color-gold, #b79f63); text-decoration: none; }
+
+/* ---- Content sheet ---- */
+.legal-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 72px 40px 96px;
+}
+.legal-overline {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-600, #806b3f);
+  margin-bottom: 18px;
+}
+h1.legal-title {
+  font-family: var(--font-display, "Jost", sans-serif);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  margin: 0 0 12px;
+  color: var(--neutral-800, #181818);
+}
+.legal-sub {
+  font-size: 16px;
+  color: var(--neutral-500, #66665f);
+  margin: 0 0 52px;
+  max-width: 620px;
+}
+
+.legal-wrap h2 {
+  font-family: var(--font-display, "Jost", sans-serif);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 56px 0 16px;
+  padding-top: 28px;
+  border-top: 1px solid var(--neutral-200, #dcdcd7);
+  color: var(--neutral-800, #181818);
+}
+.legal-wrap h2 .num {
+  color: var(--color-gold, #b79f63);
+  margin-right: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.legal-wrap h3 {
+  font-family: var(--font-display, "Jost", sans-serif);
+  font-weight: 700;
+  font-size: 1.08rem;
+  letter-spacing: -0.005em;
+  margin: 34px 0 8px;
+  color: var(--neutral-800, #181818);
+}
+.legal-wrap p { margin: 0 0 16px; text-wrap: pretty; }
+.legal-wrap a { color: var(--gold-600, #806b3f); text-underline-offset: 2px; overflow-wrap: anywhere; }
+.legal-wrap a:hover { color: var(--color-gold, #b79f63); }
+.legal-wrap strong { font-weight: 700; }
+.legal-wrap .addr {
+  margin: 0 0 20px;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid var(--neutral-200, #dcdcd7);
+  border-radius: var(--radius-lg, 14px);
+  line-height: 1.6;
+}
+.legal-wrap .addr strong { display: block; margin-bottom: 4px; }
+.legal-wrap .legalese {
+  font-size: 14.5px;
+  color: var(--neutral-600, #44443f);
+  line-height: 1.6;
+}
+.legal-wrap .src {
+  margin-top: 48px;
+  font-size: 13.5px;
+  color: var(--neutral-500, #66665f);
+}
+
+/* ---- Bottom nav ---- */
+.legal-foot {
+  border-top: 1px solid var(--neutral-200, #dcdcd7);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 28px 40px 56px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--neutral-500, #66665f);
+}
+.legal-foot a { color: var(--neutral-600, #44443f); text-decoration: none; }
+.legal-foot a:hover { color: var(--color-gold, #b79f63); }
+
+@media (max-width: 640px) {
+  .legal-bar { padding: 16px 22px; }
+  .legal-wrap { padding: 48px 22px 72px; }
+  .legal-foot { padding: 24px 22px 44px; }
+}

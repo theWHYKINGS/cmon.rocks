@@ -22,10 +22,13 @@ export PATH="$HOME/.local/bin:$PATH"   # local gh install
 
 MSG="${1:-Update site — $(date '+%Y-%m-%d %H:%M')}"
 
-# No post-processing yet — the CMON design is hosted as-is (client-rendered
-# source + support.js). NOTE: real Impressum/Datenschutz/AGB content is still
-# missing (footer links are empty #anchors) and must be added before the site
-# is public — German Impressumspflicht. See scripts/pull-from-design.md.
+# --- post-process the fresh source before publishing (all idempotent) ---
+echo "Pointing fonts + React/Babel at local copies…"
+python3 scripts/localize_assets.py
+echo "Building legal pages…"
+python3 scripts/build_legal.py
+echo "Injecting title / meta / favicon + wiring footer legal links…"
+python3 scripts/inject_head.py
 
 if [ -z "$(git status --porcelain)" ]; then
   echo "Nothing changed — working tree is clean. Nothing to deploy."
