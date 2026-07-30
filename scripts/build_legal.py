@@ -38,6 +38,7 @@ style_block = f"{fonts_link}\n<style>\n{legal_css}\n{theme_css}\n</style>"
 pages = [
     ("src/legal/Impressum.html", "legal/Impressum.html"),
     ("src/legal/Datenschutz.html", "legal/Datenschutz.html"),
+    ("src/legal/AGB.html", "legal/AGB.html"),
 ]
 
 for src, out in pages:

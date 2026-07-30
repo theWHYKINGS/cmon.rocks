@@ -8,8 +8,7 @@ by hand is wiped each pull. This re-applies it idempotently:
   * <title> + meta description + canonical + og/twitter tags
   * favicon / apple-touch-icon
   * footer legal links: the source points them at #impressum / #datenschutz / #agb.
-    We repoint Impressum + Datenschutz at the real pages and remove the AGB link
-    (no AGB content yet — restore it once terms exist).
+    We repoint all three at the built pages under legal/.
 
 Run it after unpack_code.py; deploy.sh does that for you.
 
@@ -68,10 +67,9 @@ if n:
 new, n = re.subn(r'href="#datenschutz"', 'href="legal/Datenschutz.html"', html)
 if n:
     html = new; changed.append("Datenschutz link")
-# remove the AGB link entirely (no AGB page yet)
-new, n = re.subn(r'<a\s+href="#agb"[^>]*>.*?</a>', "", html, flags=re.S)
+new, n = re.subn(r'href="#agb"', 'href="legal/AGB.html"', html)
 if n:
-    html = new; changed.append(f"removed AGB link ({n})")
+    html = new; changed.append("AGB link")
 
 idx.write_text(html, encoding="utf-8")
 print("✓ inject_head: " + (", ".join(changed) if changed else "already up to date"))
