@@ -7,7 +7,9 @@ Claude runs — you just say **"deploy cmon"**.
 ## Project
 
 - **Project ID:** `0517deb9-ca31-46e2-a79d-ecb1c8669be7`
-- **Entry file:** the top-level **`CMON Website 1a Template.dc.html`** → published as `index.html`
+- **Entry file:** the single non-archive top-level `*.dc.html` → published as `index.html`
+  (renamed over time: `CMON Website 1a Template.dc.html` → `CMON! Webseite.dc.html`
+  as of 2026-07-30 — detected dynamically, never hardcoded)
 - **API base:** `https://claude.ai/design/anthropic.omelette.api.v1alpha.OmeletteService/`
 - **Auth:** claude.ai session cookies (same-origin fetch from an open claude.ai tab)
 
@@ -15,8 +17,8 @@ Claude runs — you just say **"deploy cmon"**.
 
 `ListFiles` first, then pick by rule — do NOT hardcode a name:
 
-- **Use** the top-level `*.dc.html` that is the current design (as of 2026-07-28:
-  `CMON Website 1a Template.dc.html`, title "Homepage | CMON!").
+- **Use** the top-level `*.dc.html` that is the current design (as of 2026-07-30:
+  `CMON! Webseite.dc.html`, title "Homepage | CMON!").
 - **Never** publish `CMON Website Redesign (ARCHIVE).dc.html` — it's explicitly
   archived. If more than one non-archive `.dc.html` exists, stop and ask which is
   canonical.
