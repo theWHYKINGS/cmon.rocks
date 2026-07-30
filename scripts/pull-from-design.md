@@ -79,11 +79,10 @@ scripts re-apply them after each pull (so a re-pull never loses them):
   three unpkg React/Babel URLs in support.js to `vendor/*.js`. **No third-party
   request** remains (GDPR). React/ReactDOM/Babel are byte-identical to unpkg
   (match the SRI hashes support.js declares).
-- `build_legal.py` — builds `legal/Impressum.html` + `legal/Datenschutz.html`
-  from `src/legal/*.html`, themed to CMON (terracotta + local fonts).
+- `build_legal.py` — builds `legal/Impressum.html` + `legal/Datenschutz.html` +
+  `legal/AGB.html` from `src/legal/*.html`, themed to CMON (terracotta + local fonts).
 - `inject_head.py` — adds `<title>`, meta/OG, favicon, `lang="de"`; repoints the
-  footer `#impressum`/`#datenschutz` links to the built pages; **removes the
-  `#agb` link** (see below).
+  footer `#impressum`/`#datenschutz`/`#agb` links to the built pages under legal/.
 
 **Legal entity = the WHYKINGS GmbH** (confirmed 2026-07-28), same as the main
 site + Academy — Impressum reuses the GmbH data. The Datenschutz is CMON-specific
@@ -93,14 +92,21 @@ css2 fetch (Safari UA) into `assets/fonts/`, regenerate `vendor/fonts-local.css`
 
 ## ⚠️ Still open before public launch
 
-- **AGB:** the template's footer linked to `#agb` but there is no AGB text yet, so
-  `inject_head.py` removes that link. If CMON needs Coworking-AGB (rental terms,
-  cancellation, house rules), add `src/legal/AGB.html`, extend `build_legal.py`,
-  and restore the footer link in `inject_head.py`.
-- **Favicon** is the wordmark `assets/cmon-logo.png` (wide, not square) — a proper
-  square icon would look better in the browser tab.
-- **Datenschutz** was adapted from an eRecht24 base + the Academy version; have it
-  reviewed for CMON specifics before heavy public promotion.
+- **Legal review:** `src/legal/AGB.html` was derived from a CMON Untermietvertrag
+  (Fixed-Desk terms — see below) and Datenschutz from an eRecht24 base + the
+  Academy version. Both are careful drafts — have a lawyer review the AGB clauses
+  (Kaution, Haftung, Kündigung fall under §§ 305 ff. BGB) before heavy promotion.
+- Favicon is now the design's own square `assets/favicon.png` (128×128).
+
+## Legal pages: source of the AGB
+
+`legal/AGB.html` is built from `src/legal/AGB.html`, whose terms were extracted
+from `~/Desktop/CMON/Untermietverträge/…/…_ENTWURF.pdf` (Fixed-Desk Untermietvertrag):
+Mietgegenstand (Büroplatz + höhenverstellbarer Tisch/Stuhl, Gemeinschaftsflächen,
+1 Schlüssel, keine eigenen Möbel, keine baulichen Änderungen), Zugang Mo–So 0–24 h
+(Wochenende entfällt bei Veranstaltung, 24 h Vorlauf), unbefristet / 3 Monate zum
+Monatsende, 320 € netto zzgl. USt all-inclusive (fällig 27. des Vormonats), Kaution
+1 Nettomiete. NO personal data or IBAN from the contract is in the AGB.
 
 ## Gotchas
 
