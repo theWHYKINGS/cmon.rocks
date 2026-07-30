@@ -56,7 +56,9 @@
 .m-modal{padding:26px 20px 24px !important;border-radius:14px !important}
 .m-mgrid{grid-template-columns:1fr !important}
 .m-wrap{flex-wrap:wrap !important}
-}</style><link rel="icon" type="image/png" href="assets/favicon.png"></helmet>
+.m-burger{display:flex !important}
+}
+@keyframes menuFade{from{opacity:0}to{opacity:1}}</style><link rel="icon" type="image/png" href="assets/favicon.png"></helmet>
 <div data-screen-label="CMON Website (Vorschlag 1a)" style="max-width:1440px;margin:0 auto;background:#FBF8F2;color:#241E17;font-family:'Hanken Grotesk',sans-serif">
   <div class="m-nav" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 48px;border-bottom:1px solid #E9E0D2">
     <div style="display:flex;align-items:center;gap:12px">
@@ -67,8 +69,38 @@
     <div style="display:flex;gap:26px;align-items:center;font-size:14.5px;font-weight:500;color:#4E463B">
       <a class="m-hide" href="#flaeche">Die Fläche</a><a class="m-hide" href="#benefits">Benefits</a><a class="m-hide" href="#preise">Preise</a><a class="m-hide" href="#kontakt">Kontakt</a>
       <a href="{{ ctaBuchen }}" style="background:#A65231;color:#fff;padding:10px 20px;border-radius:99px;font-weight:600;font-size:14px">Besichtigung anfragen</a>
+      <button class="m-burger" onClick="{{ openMenu }}" aria-label="Menü öffnen" style="display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;padding:0;background:none;border:1.5px solid #D8CCBB;border-radius:99px;cursor:pointer;align-items:center;flex:none">
+        <span style="width:16px;height:1.5px;background:#241E17;display:block"></span>
+        <span style="width:16px;height:1.5px;background:#241E17;display:block"></span>
+        <span style="width:16px;height:1.5px;background:#241E17;display:block"></span>
+      </button>
     </div>
   </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;background:#FBF8F2;z-index:80;display:flex;flex-direction:column;animation:menuFade .18s ease">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid #E9E0D2">
+        <div style="display:flex;align-items:center;gap:12px">
+          <sc-if value="{{ logoIsBild }}" hint-placeholder-val="{{ false }}"><img src="assets/cmon-logo.png" alt="CMON" style="height:26px;width:auto;display:block;mix-blend-mode:multiply"></sc-if>
+          <sc-if value="{{ logoIsText }}" hint-placeholder-val="{{ true }}"><span style="font-family:'Newsreader',serif;font-weight:600;font-size:25px;letter-spacing:-.01em">CMON!</span></sc-if>
+        </div>
+        <button onClick="{{ closeMenu }}" aria-label="Menü schließen" style="width:42px;height:42px;padding:0;background:none;border:1.5px solid #D8CCBB;border-radius:99px;cursor:pointer;position:relative;flex:none">
+          <span style="position:absolute;left:50%;top:50%;width:16px;height:1.5px;background:#241E17;transform:translate(-50%,-50%) rotate(45deg);display:block"></span>
+          <span style="position:absolute;left:50%;top:50%;width:16px;height:1.5px;background:#241E17;transform:translate(-50%,-50%) rotate(-45deg);display:block"></span>
+        </button>
+      </div>
+      <nav style="display:flex;flex-direction:column;padding:28px 20px;gap:0;flex:1;overflow:auto">
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#A65231;font-weight:700;padding-bottom:10px">Menü</span>
+        <a href="#flaeche" onClick="{{ closeMenu }}" style="font-family:'Newsreader',serif;font-size:32px;font-weight:500;padding:16px 0;border-bottom:1px solid #E9E0D2">Die Fläche</a>
+        <a href="#benefits" onClick="{{ closeMenu }}" style="font-family:'Newsreader',serif;font-size:32px;font-weight:500;padding:16px 0;border-bottom:1px solid #E9E0D2">Benefits</a>
+        <a href="#preise" onClick="{{ closeMenu }}" style="font-family:'Newsreader',serif;font-size:32px;font-weight:500;padding:16px 0;border-bottom:1px solid #E9E0D2">Preise</a>
+        <a href="#kontakt" onClick="{{ closeMenu }}" style="font-family:'Newsreader',serif;font-size:32px;font-weight:500;padding:16px 0;border-bottom:1px solid #E9E0D2">Kontakt</a>
+      </nav>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:14px;border-top:1px solid #E9E0D2">
+        <a href="{{ ctaBuchen }}" onClick="{{ closeMenu }}" style="background:#A65231;color:#fff;text-align:center;padding:15px;border-radius:99px;font-weight:600;font-size:15px">Besichtigung anfragen</a>
+        <span style="text-align:center;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7A7063;font-weight:600">Coworking · Maxvorstadt</span>
+      </div>
+    </div>
+  </sc-if>
   <div id="flaeche" class="m-hero m-px" style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:52px;padding:64px 48px 56px;align-items:center">
     <div style="display:flex;flex-direction:column;gap:22px">
       <span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#A65231;font-weight:700">Schleißheimer Str. 42 · 80333 München</span>
@@ -116,7 +148,7 @@
       <h2 class="m-h2" style="margin:0;font-family:'Newsreader',serif;font-weight:500;font-size:36px;letter-spacing:-.01em">Leistungsangebot</h2>
       <span style="font-size:14px;color:#7A7063">Alle Preise netto zzgl. USt. – konkretes Angebot nach kurzer Anfrage.</span>
     </div>
-    <div class="m-1col" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start">
+    <div class="m-1col" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch">
       <div style="background:#fff;border:2px solid #A65231;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;position:relative">
         <span style="position:absolute;top:-12px;left:24px;background:#A65231;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:99px">Kernangebot</span>
         <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A7063;font-weight:700;padding-top:4px">Fixed Desk</span>
@@ -129,7 +161,7 @@
           <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#A65231;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Kaffee- &amp; Tee-Flat</span></div>
           <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#A65231;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">High-Speed Internet (250 Mbit/s)</span></div>
         </div>
-        <a href="#fixed-desk-formular" onClick="{{ openFixed }}" style="background:#A65231;color:#fff;text-align:center;padding:13px;border-radius:99px;font-weight:600;font-size:14.5px;margin-top:4px">Fixed Desk anfragen</a>
+        <a href="#fixed-desk-formular" onClick="{{ openFixed }}" style="background:#A65231;color:#fff;text-align:center;padding:13px;border-radius:99px;font-weight:600;font-size:14.5px;margin-top:auto">Fixed Desk anfragen</a>
       </div>
       <div style="background:#fff;border:1px solid #E9E0D2;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px">
         <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A7063;font-weight:700;padding-top:4px">Wochenende · 1 Tag</span>
@@ -143,7 +175,7 @@
           <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Voll ausgestattete Küche, Reinigung inklusive</span></div>
           <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Kaffee, Tee &amp; Softdrinks gegen Aufpreis</span></div>
         </div>
-        <a href="{{ ctaWochenende }}" style="border:1.5px solid #D8CCBB;color:#241E17;text-align:center;padding:13px;border-radius:99px;font-weight:600;font-size:14.5px;margin-top:4px">Verfügbarkeit anfragen</a>
+        <a href="{{ ctaWochenende }}" style="border:1.5px solid #D8CCBB;color:#241E17;text-align:center;padding:13px;border-radius:99px;font-weight:600;font-size:14.5px;margin-top:auto">Verfügbarkeit anfragen</a>
       </div>
       <div style="background:#fff;border:1px solid #E9E0D2;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px">
         <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A7063;font-weight:700;padding-top:4px">Wochenende · 2 Tage</span>
@@ -157,7 +189,7 @@
           <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Voll ausgestattete Küche, Reinigung inklusive</span></div>
           <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:99px;background:#C4B49E;margin-top:7px;flex:none"></span><span style="font-size:14px;line-height:1.5">Kaffee, Tee &amp; Softdrinks gegen Aufpreis</span></div>
         </div>
-        <a href="{{ ctaWochenende }}" style="border:1.5px solid #D8CCBB;color:#241E17;text-align:center;padding:13px;border-radius:99px;font-weight:600;font-size:14.5px;margin-top:4px">Verfügbarkeit anfragen</a>
+        <a href="{{ ctaWochenende }}" style="border:1.5px solid #D8CCBB;color:#241E17;text-align:center;padding:13px;border-radius:99px;font-weight:600;font-size:14.5px;margin-top:auto">Verfügbarkeit anfragen</a>
       </div>
     </div>
   </div>
@@ -307,7 +339,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"logo":{"editor":"enum","options":["text","bild"],"default":"text","tsType":"string","section":"Branding"},"buchung":{"editor":"enum","options":["email","whatsapp"],"default":"email","tsType":"string","section":"Kontakt"}}'>
 class Component extends DCLogic {
-  state = { formOpen: false, sent: false, hint: '', f: { name: '', email: '', ab: '', beruf: '', freq: 3, calls: 3, text: '' } };
+  state = { formOpen: false, menuOpen: false, sent: false, hint: '', f: { name: '', email: '', ab: '', beruf: '', freq: 3, calls: 3, text: '' } };
 
   set(key, val) { this.setState(s => ({ f: Object.assign({}, s.f, { [key]: val }), hint: '' })); }
 
@@ -373,7 +405,10 @@ class Component extends DCLogic {
       freqLabel: freqLabels[f.freq - 1],
       callOptions,
       callLabel: callLabels[f.calls - 1],
-      openFixed: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ formOpen: true, sent: false, hint: '' }); },
+      menuOpen: this.state.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      openFixed: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ formOpen: true, sent: false, hint: '', menuOpen: false }); },
       closeForm: () => this.setState({ formOpen: false }),
       onName: (e) => this.set('name', e.target.value),
       onEmail: (e) => this.set('email', e.target.value),
