@@ -31,8 +31,8 @@ URL = "https://www.cmon.rocks/"
 HEAD = f"""<title>{TITLE}</title>
 <meta name="description" content="{DESC}" />
 <link rel="canonical" href="{URL}" />
-<link rel="icon" type="image/png" href="assets/cmon-logo.png" />
-<link rel="apple-touch-icon" href="assets/cmon-logo.png" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="apple-touch-icon" href="assets/favicon.png" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="{TITLE}" />
 <meta property="og:description" content="{DESC}" />
